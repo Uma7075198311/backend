@@ -43,6 +43,14 @@ db = client["complaints_db"]
 collection = db["complaints"]
 
 
+
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"message": "Backend is running!"})
+
+
+
+
 @app.route("/register", methods=["POST"])
 def register():
     data = request.get_json()
@@ -126,9 +134,9 @@ def admin_summary():
         "users_registered": registered_users
     })
 
-@app.route('/admin/complaints', methods=['GET'])
-def get_complaints():
-    return jsonify(complaints_data)
+# @app.route('/admin/complaints', methods=['GET'])
+# def get_complaints():
+#     return jsonify(complaints_data)
 
 # Add route to resolve a complaint
 
@@ -173,5 +181,8 @@ def delete_complaint(complaint_id):
     complaints = [c for c in complaints if c["id"] != complaint_id]
     return jsonify({"message": "Complaint deleted"}), 200
 
+
+
 if __name__ == "__main__":
     app.run(debug=True)
+    handler = app
