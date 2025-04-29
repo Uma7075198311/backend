@@ -181,8 +181,8 @@ def delete_complaint(complaint_id):
     complaints = [c for c in complaints if c["id"] != complaint_id]
     return jsonify({"message": "Complaint deleted"}), 200
 
-
+handler = app
 
 if __name__ == "__main__":
     app.run(debug=True)
-    handler = app
+  
